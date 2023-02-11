@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        #container {
+            display: flex;
+            flex-wrap: wrap;
+            width: 500px;
+            height: 450px;
+            background-color: rgb(248, 239, 248);
+            border: 2px solid black;
+            margin: 20px auto;
+        }
+
+        .child {
+            width: 100px;
+            height: 100px;
+            background-color: rgb(240, 240, 8);
+            border: 2px solid rgb(0, 0, 0);
+            margin: 10px;
+        }
+
+        #button {
+            margin-left: 40%;
+        }
+
+        #heading {
+            margin-left: 38%;
+            margin-bottom: 5px;
+            color: rgb(15, 15, 14);
+        }
+
+        .body {
+            background-color: rgb(248, 226, 238);
+        }
+    </style>
+</head>
+
+<body class="body">
+    <h1 id="heading">DOM MANIPULATION</h1>
+    <div id="container">
+    </div>
+    <div id="button">
+        <button id="changeColor">Change Color</button>
+        <button id="addChild">Add Child</button>
+        <button id="removeChild">Remove Child</button>
+    </div>
+
+    <script>
+        const container = document.getElementById("container");
+        const changeColorButton = document.getElementById("changeColor");
+        const addChildButton = document.getElementById("addChild");
+        const removeChildButton = document.getElementById("removeChild");
+
+        changeColorButton.addEventListener("click", function () {
+            container.style.backgroundColor = getRandomColor();
+        });
+
+        addChildButton.addEventListener("click", function () {
+            const child = document.createElement("div");
+            child.classList.add("child");
+            container.appendChild(child);
+        });
+
+        removeChildButton.addEventListener("click", function () {
+            if (container.childNodes.length > 0) {
+                container.removeChild(container.lastChild);
+            }
+        });
+
+        function getRandomColor() {
+            const colors = ["red", "green", "blue", "purple", "pink", "orange"];
+            return colors[Math.floor(Math.random() * colors.length)];
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Example DOM Model</title>
+</head>
+
+<body>
+    <div id="container">
+        <h1 class="title">Hello, World!</h1>
+        <p>This is some text content.</p>
+        <!-- This is a comment -->
+    </div>
+
+    <script>
+        const container = document.getElementById("container"); //retrieves the <div> element with an id of "container".
+        console.log("Container Node:", container);
+
+        const title = document.querySelector(".title"); //retrieves the <h1> element with a class of "title".
+        console.log("Title Node:", title);
+
+        const textNode = title.childNodes[0]; //etrieves the text node within the <h1> element.
+        console.log("Text Node:", textNode);
+
+        const commentNode = document.childNodes[1].childNodes[3].childNodes[3]; //retrieves the comment node in the DOM tree.
+        console.log("Comment Node:", commentNode);
+
+        textNode.textContent = "Hi, There!"; //The text content of the text node is updated using the textContent property, which sets or returns the text content of a node
+        console.log("Updated Text Content:", textNode.textContent);
+    </script>
+</body>
+
+</html>

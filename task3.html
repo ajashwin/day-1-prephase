@@ -1,0 +1,90 @@
+<!-- Fetch data with an API
+This task is for fetching movies data by searching in a search bar.
+Create a search bar and a search button to search any movie by its title.
+Use this api http://www.omdbapi.com/?apikey=[yourkey]&, generate your api key by signing up.
+Call the above api with the title qpara when searched.
+Use promises and get data from the api and present it in a div below the search bar.
+Div should contain movie poster, movie title,  year of release, IMDB rating, cast and crew.
+API to get poster images of movies http://img.omdbapi.com/?apikey=[yourkey]&.
+ -->
+
+
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Movie Info</title>
+     <style>
+    body {
+        background-color: rgb(228, 162, 208);
+    }
+    h1 {
+        margin-top: 50px;
+        text-align: center;
+        font-weight: bolder;
+        color: rgb(43, 21, 61);
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        
+    }
+     #search-display{
+     display: flex;
+     justify-content: center;
+     margin-top: 50px;
+ }
+ #title{
+     width: 350px;
+     padding: 20px;
+     font-size: 28px;
+     color:rgb(3, 11, 15);
+     background-color: rgb(239, 240, 227);
+ }
+ #action{
+     width:100px;
+     font-size: 20px;
+     background-color: rgb(240, 240, 217);
+     cursor: pointer;
+ }
+ #result{
+     display: flex;
+     justify-content: center;
+     margin-left: 200px;
+     margin-top: 50px;
+     
+ }
+     </style>
+ </head>
+ <body>
+    <h1>Movies Information</h1>
+     <div id="search-display">
+         <input type="text" id="title" placeholder="Enter the Movie title" />
+         <button type="submit" id="action"> Search</button>
+     </div>
+     <div id="result">
+         <img src=""  id="img">
+         <div id="lists"> </div>
+     </div>
+ </body>
+ <script>
+     document.getElementById('action').addEventListener('click',event)
+ 
+     function event(){
+     let qpara = document.getElementById("title").value;
+     if(qpara!=""){
+     fetch(`https://www.omdbapi.com/?apikey=844a9c20&t=${qpara}`)
+     .then(res=>res.json())
+     .then(data =>{
+          document.getElementById("img").setAttribute('src',`https://img.omdbapi.com/?apikey=844a9c20&&i=${data.imdbID}`)
+           document.getElementById("lists").innerHTML= (`<ul>
+           <li style="font-size:25px; font-weight:bold">Movie title:${data.Title}</li>
+          <li>Year of release:${data.Year}</li>
+          <li>IMDB rating:${data.imdbRating}</li>
+          <li>Cast and Crew:${data.Director},${data.Writer},${data.Actors}</li>
+          </ul>`)
+        })
+     .catch(err =>console.log(err));
+       }
+     }
+ </script>
+ </html>
